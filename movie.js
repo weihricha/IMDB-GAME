@@ -74,19 +74,23 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
-document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-    const target = e.target;
-    if (!target.classList.contains("keyboard-button")) {
-        return;
-    }
-    let key = target.textContent;
-
-    if (key === "Del") {
-        key = "Backspace";
-    }
-
-    document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
+const keyboardContainer = document.getElementById("keyboard-cont");
+const keys = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
+keys.forEach(key => {
+    const button = document.createElement("div");
+    button.className = "keyboard-button";
+    button.textContent = key;
+    keyboardContainer.appendChild(button);
 });
+
+keyboardContainer.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.classList.contains("keyboard-button")) {
+        const key = target.textContent;
+        document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
+    }
+});
+
 
 function insertLetter(pressedKey) {
     if (currentGuess.length === lengthWithoutSpaces) {
