@@ -1,94 +1,38 @@
-h1{
-    text-align: center;
-    }
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-    #game-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 20px;
-    }
-    
-    #game-image {
-        max-width: 100%;
-        max-height: 300px;
-    }
-    
-    
-    #game-board {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    }
-    
-    
-    .letter-box {
-    border: 2px solid gray;
-    border-radius: 3px;
-    margin: 2px;
-    font-size: 2.5rem;
-    font-weight: 700;
-    height: 3rem;
-    width: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    }
-  
-    .space-box{
-     background-color: grey ;
-     pointer-events: none;
-     border: 2px solid gray;
-     border-radius: 3px;
-     margin: 2px;
-     font-size: 2.5rem;
-     font-weight: 700;
-     height: 3rem;
-     width: 3rem;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-    }
-    
-    
-    .filled-box {
-    border: 2px solid black;
-    }
-  
-    
-    .letter-row {
-    display: flex;
-    }
-    
-    #keyboard-cont {
-    margin: 1rem 0;
+#game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    }
-    
-    #keyboard-cont div {
-    display: flex;
-    }
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-    .num-row {
-        margin: 0.5rem 0;
-    }
-    .second-row {
-    margin: 0.5rem 0;
-    }
+/* Center the game image */
+#game-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}
 
-    #hint-container {
+/* Hint container styles */
+#hint-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 #hint-text {
     font-size: 18px;
+    text-align: center;
     margin-bottom: 10px;
 }
 
@@ -100,19 +44,98 @@ h1{
     color: white;
     border: none;
     border-radius: 5px;
+    width: 80%;
 }
 
 #hint-button:hover {
     background-color: #0056b3;
 }
-    
-    .keyboard-button {
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 0.5rem;
-    margin: 0 2px;
-    cursor: pointer;
+
+/* Game board styles */
+#game-board {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.letter-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    gap: 5px;
+    justify-content: center;
+}
+
+.letter-box, .space-box, .apostrophe-box {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     text-transform: uppercase;
+}
+
+.space-box, .apostrophe-box {
+    background-color: #f0f0f0;
+}
+
+.filled-box {
+    background-color: #d3d3d3;
+}
+
+/* Keyboard styles */
+#keyboard-cont {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(10, 1fr);
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.keyboard-button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    user-select: none;
+}
+
+.keyboard-button:hover {
+    background-color: #c0c0c0;
+}
+
+/* Media queries for mobile */
+@media (max-width: 600px) {
+    .letter-box, .space-box, .apostrophe-box {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
     }
-    
-    
+
+    #hint-text {
+        font-size: 16px;
+    }
+
+    #hint-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .keyboard-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #keyboard-cont {
+        gap: 3px;
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
