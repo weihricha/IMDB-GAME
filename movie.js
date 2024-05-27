@@ -74,23 +74,19 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
-const keyboardContainer = document.getElementById("keyboard-cont");
-const keys = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
-keys.forEach(key => {
-    const button = document.createElement("div");
-    button.className = "keyboard-button";
-    button.textContent = key;
-    keyboardContainer.appendChild(button);
-});
-
-keyboardContainer.addEventListener("click", (e) => {
+document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     const target = e.target;
-    if (target.classList.contains("keyboard-button")) {
-        const key = target.textContent;
-        document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
+    if (!target.classList.contains("keyboard-button")) {
+        return;
     }
-});
+    let key = target.textContent;
 
+    if (key === "Del") {
+        key = "Backspace";
+    }
+
+    document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
+});
 
 function insertLetter(pressedKey) {
     if (currentGuess.length === lengthWithoutSpaces) {
@@ -196,7 +192,7 @@ function shadeKeyBoard(letter, color) {
 
 const hints = [
     "This movie's genre is: ",
-    "This movie has this actpr in it: ",
+    "This movie has this actor in it: ",
     "This movie has this plot detail: "
 ];
 const hintDetails = [hint1, hint2, hint3];
